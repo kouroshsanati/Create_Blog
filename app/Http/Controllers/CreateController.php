@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+
 class CreateController extends Controller
 {
     public function createPost()
@@ -11,7 +13,8 @@ class CreateController extends Controller
             'content' => ['required'],
             'user_id' => ['required']
         ]);
-
+        Post::create($validated);
+        return view('create');
     }
 
     public function createPage()
