@@ -6,7 +6,15 @@ use App\Models\Post;
 
 class CreateController extends Controller
 {
-    public function createPost()
+
+    public function index()
+    {
+        return view('index', [
+            'posts' => Post::all()
+        ]);
+    }
+
+    public function store()
     {
         $validated = request()->validate([
             'title' => ['required'],
@@ -17,8 +25,16 @@ class CreateController extends Controller
         return view('create');
     }
 
-    public function createPage()
+    public function create()
     {
         return view('create');
+    }
+
+    public function show(Post $post)
+    {
+        return view('show', [
+            'post' => $post
+        ]);
+
     }
 }

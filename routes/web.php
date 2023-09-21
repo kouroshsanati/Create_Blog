@@ -22,5 +22,8 @@ Route::get('/', function () {
 //        'post' => $post
 //    ]);
 //});
-Route::get('/create', [\App\Http\Controllers\CreateController::class,'createPage']);
-Route::post('/create', [\App\Http\Controllers\CreateController::class, 'createPost']);
+Route::get('/posts', [\App\Http\Controllers\CreateController::class, 'index']);
+Route::get('/posts/create', [\App\Http\Controllers\CreateController::class, 'create']);
+Route::post('/posts', [\App\Http\Controllers\CreateController::class, 'store']);
+Route::get('posts/{post}',[\App\Http\Controllers\CreateController::class,'show']);
+

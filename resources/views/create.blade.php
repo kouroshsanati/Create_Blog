@@ -41,7 +41,7 @@
     <!--    </div>-->
     <div>
         <h2 class="text-lg font-semibold mb-4">Create post</h2>
-        <form method="post" class="space-y-4" action="">
+        <form method="post" class="space-y-4" action="/posts">
             @csrf
             <div>
                 <label for="itemName" class="block text-sm font-medium text-gray-400 mb-1">post title</label>
