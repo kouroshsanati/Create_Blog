@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 
-class CreateController extends Controller
+class PostController extends Controller
 {
 
     public function index()
@@ -35,6 +35,27 @@ class CreateController extends Controller
         return view('show', [
             'post' => $post
         ]);
+    }
 
+    public function edit(Post $post)
+    {
+        return view('edit',['post' => $post]);
+    }
+
+    public function update(Post $post)
+    {
+        $validated = request()->validate([
+            'title' => ['required'],
+            'content' => ['required']
+        ]);
+
+        $post->update($validated);
+        return redirect()->to("/posts/{$post->id}/edit");
+    }
+
+    public function destroy(Post $post)
+    {
+        $post->delete();
+        return redirect()->to('/posts');
     }
 }

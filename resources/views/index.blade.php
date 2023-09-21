@@ -15,9 +15,14 @@
         <p>
             {{$post->content}}
         </p>
+        <form method="post"  action="/posts/{{$post->id}}">
+            @method('DELETE')
+            @csrf
+            <button style="color: red" type="submit" name="delete" value="">Delete</button>
+        </form>
     @endforeach
 
-
+{{--    action="{{route('seller.restaurant.update',$restaurant->id)}}"--}}
 </body>
 </html>
 

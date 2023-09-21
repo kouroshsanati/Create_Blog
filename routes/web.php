@@ -22,8 +22,15 @@ Route::get('/', function () {
 //        'post' => $post
 //    ]);
 //});
-Route::get('/posts', [\App\Http\Controllers\CreateController::class, 'index']);
-Route::get('/posts/create', [\App\Http\Controllers\CreateController::class, 'create']);
-Route::post('/posts', [\App\Http\Controllers\CreateController::class, 'store']);
-Route::get('posts/{post}',[\App\Http\Controllers\CreateController::class,'show']);
+//Route::get('/posts', [\App\Http\Controllers\PostController::class, 'index']);
+//Route::get('/posts/create', [\App\Http\Controllers\PostController::class, 'create']);
+//Route::post('/posts', [\App\Http\Controllers\PostController::class, 'store']);
+//Route::get('posts/{post}',[\App\Http\Controllers\PostController::class,'show']);
+//Route::get('/posts/{post}/edit',[\App\Http\Controllers\PostController::class,'edit']);
+//
+//Route::patch('/posts/{post}',[\App\Http\Controllers\PostController::class,'update']);
+//Route::delete('/posts/{post}',[\App\Http\Controllers\PostController::class,'destroy']);
+
+
+Route::resource('posts',\App\Http\Controllers\PostController::class);
 
