@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
 //Route::get('/post/{post}', function (Post $post) {
 //    return view('post', [
 //        'post' => $post
@@ -30,7 +31,6 @@ Route::get('/', function () {
 //
 //Route::patch('/posts/{post}',[\App\Http\Controllers\PostController::class,'update']);
 //Route::delete('/posts/{post}',[\App\Http\Controllers\PostController::class,'destroy']);
-
 
 Route::resource('posts',\App\Http\Controllers\PostController::class);
 
