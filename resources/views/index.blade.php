@@ -20,13 +20,12 @@
                 {{$post->content}}
             </p>
             <div class="flex justify-end">
-                <button class="showModal hover:bg-gray-700  bg-indigo-400 text-white p-2.5 rounded-2xl"
+                <button class="showModal hover:bg-gray-700  bg-indigo-400 text-white p-2.5 rounded-2xl" value="{{$post->id}}"
                         name="delete">Delete
                 </button>
             </div>
-
         </div>
-        <div id="popup-modal" tabindex="-1"
+        <div id="popup-modal-{{$post->id}}" tabindex="-1"
              class="fixed top-1/2 left-1/2  z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative w-full max-w-md max-h-full">
                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -51,11 +50,11 @@
                         <form method="post" action="/posts/{{$post->id}}">
                             @method('DELETE')
                             @csrf
-                            <button data-modal-hide="popup-modal" type="submit"
+                            <button data-modal-hide="popup-modal" type="submit" value="{{$post->id}}"
                                     class="closeModal text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
-                                Yes, I'm sure
+                                Yes, I'm sure (delete {{$post->title}})
                             </button>
-                            <button data-modal-hide="popup-modal" type="button"
+                            <button data-modal-hide="popup-modal" type="button" value="{{$post->id}}"
                                     class="closeModal text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
                                 No, cancel
                             </button>
@@ -70,18 +69,23 @@
 </div>
 
 <script>
-    const modal = document.querySelector('#popup-modal');
+
     const showModals = document.querySelectorAll('.showModal');
     const closers = document.querySelectorAll('.closeModal');
 
-    showModals.forEach(closer => {
-        closer.addEventListener('click', function () {
+    showModals.forEach(show => {
+        show.addEventListener('click', function () {
+            const id = show.value;
+            const modal = document.querySelector('#popup-modal-'+id);
             modal.classList.remove('hidden');
         })
     })
+    shows = document.getElementsByClassName('showModal');
 
     closers.forEach(closer => {
         closer.addEventListener('click', function () {
+            const id = closer.value;
+            const modal = document.querySelector('#popup-modal-'+id);
             modal.classList.add('hidden');
         })
     })
