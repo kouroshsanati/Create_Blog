@@ -48,6 +48,11 @@
                 <input type="text" id="itemName" name="title"
                        class="mt-1 px-4 py-2 w-full border rounded-md bg-gray-700 text-gray-200">
             </div>
+            @error('title')
+            <p class="text-red-500">
+                {{$message}}
+             </p>
+            @enderror
             <div>
                 <label for="itemID" class="block text-sm font-medium text-gray-400 mb-1">post content</label>
                 <input type="text" id="itemID" name="content"
