@@ -21,3 +21,14 @@ Route::get('/post/{post}', function (Post $post) {
         'post' => $post
     ]);
 });
+Route::get('/create',function (){
+    return view('create');
+});
+Route::post('/create',function (){
+    $validated=request()->validate([
+        'title'=>['required'],
+        'content'=>['required'],
+        'user_id'=>['required']
+    ]);
+
+});
