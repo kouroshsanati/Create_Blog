@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,19 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/post/{post}', function (Post $post) {
-    return view('post', [
-        'post' => $post
-    ]);
-});
-Route::get('/create',function (){
-    return view('create');
-});
-Route::post('/create',function (){
-    $validated=request()->validate([
-        'title'=>['required'],
-        'content'=>['required'],
-        'user_id'=>['required']
-    ]);
-
-});
+//Route::get('/post/{post}', function (Post $post) {
+//    return view('post', [
+//        'post' => $post
+//    ]);
+//});
+Route::get('/create', [\App\Http\Controllers\CreateController::class,'createPage']);
+Route::post('/create', [\App\Http\Controllers\CreateController::class, 'createPost']);
