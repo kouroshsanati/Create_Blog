@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +19,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome',[
-        'users'=>User::all()
+    dd(Comment::query()->find(11));
+    return view('welcome', [
+        'users' => User::with('posts')->get()
     ]);
 });
-
+Route::get('users/{user}/posts', function (User $user) {
+    return view('user_posts',
+        [
+            'posts' => $user->posts
+        ]);
+});
 //Route::get('/post/{post}', function (Post $post) {
 //    return view('post', [
 //        'post' => $post

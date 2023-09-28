@@ -43,7 +43,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    protected $with = ['posts'];
+protected $with=['posts'];
 
     public function posts(): HasMany
     {
