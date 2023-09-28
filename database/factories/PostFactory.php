@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Psy\Util\Str;
 
@@ -17,7 +18,7 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
-        $user_id  = \App\Models\User::query()->inRandomOrder()->first()->id;
+        $user_id  = User::query()->inRandomOrder()->first()->id;
         return [
             'title' => fake()->unique()->name(),
             'content' => fake()->text,

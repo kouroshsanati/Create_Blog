@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreatePostRequest;
 use App\Models\Post;
+use http\Env\Request;
 
 class PostController extends Controller
 {
@@ -14,14 +16,10 @@ class PostController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(CreatePostRequest $request)
     {
-        $validated = request()->validate([
-            'title' => ['required'],
-            'content' => ['required'],
-            'user_id' => ['required']
-        ]);
-        Post::create($validated);
+        $validated =  $request->validated();
+        Post::query()->create($validated);
         return view('create');
     }
 
