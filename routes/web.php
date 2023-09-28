@@ -46,4 +46,4 @@ use Illuminate\Support\Facades\Route;
 Route::resource('posts', PostController::class);
 Route::get('users/{user}/posts', [PostController::class, 'showPostUser']);
 Route::post('/filter',[PostController::class,'filter']);
-Route::get('/filter',[PostController::class,'filter']);
+//Route::get('/filter',[PostController::class,'filter']);

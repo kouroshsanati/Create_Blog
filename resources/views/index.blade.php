@@ -9,20 +9,21 @@
 </head>
 <body class="container mx-auto bg-gradient-to-r from-indigo-800 to-purple-900 text-white flex  justify-center">
 
-<form action="/filter" method="post">
 
-    @csrf
-    <select name="select" class="text-amber-950">
-        <option disabled selected>OrderBy</option>
-        <option value="byTitle">ByTitle</option>
-        <option value="byContent">ByContent</option>
-    </select>
-    <button name="submit" type="submit">Submit</button>
-
-
-</form>
 
 <div class="flex flex-col w-1/2 ">
+    <form action="/filter" method="post" >
+
+        @csrf
+        <select name="select" class=" bg-indigo-400 text-white rounded-2xl p-1.5 mx-auto mt-2.5">
+            <option disabled selected>OrderBy</option>
+            <option value="byTitle">ByTitle</option>
+            <option value="byContent">ByContent</option>
+        </select>
+        <button name="submit" type="submit" class=" mr-1.5 bg-blue-400 rounded-2xl p-1.5 mt-2.5">Submit</button>
+
+
+    </form>
     @foreach($posts as $post )
 
         <div class="flex flex-col mt-14 bg-gray-800 p-2.5  rounded-2xl gap-2.5">
