@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome',[
+        'users'=>User::all()
+    ]);
 });
 
 //Route::get('/post/{post}', function (Post $post) {
@@ -32,5 +36,5 @@ Route::get('/', function () {
 //Route::patch('/posts/{post}',[\App\Http\Controllers\PostController::class,'update']);
 //Route::delete('/posts/{post}',[\App\Http\Controllers\PostController::class,'destroy']);
 
-Route::resource('posts',\App\Http\Controllers\PostController::class);
+Route::resource('posts', PostController::class);
 
