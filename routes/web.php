@@ -18,18 +18,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    dd(Comment::query()->find(11));
+/*Route::get('/', function () {
+    dd(collect(Post::all()));
     return view('welcome', [
         'users' => User::with('posts')->get()
     ]);
-});
-Route::get('users/{user}/posts', function (User $user) {
-    return view('user_posts',
-        [
-            'posts' => $user->posts
-        ]);
-});
+});*/
+
+
+
+
 //Route::get('/post/{post}', function (Post $post) {
 //    return view('post', [
 //        'post' => $post
@@ -44,5 +42,8 @@ Route::get('users/{user}/posts', function (User $user) {
 //Route::patch('/posts/{post}',[\App\Http\Controllers\PostController::class,'update']);
 //Route::delete('/posts/{post}',[\App\Http\Controllers\PostController::class,'destroy']);
 
-Route::resource('posts', PostController::class);
 
+Route::resource('posts', PostController::class);
+Route::get('users/{user}/posts', [PostController::class, 'showPostUser']);
+Route::post('/filter',[PostController::class,'filter']);
+Route::get('/filter',[PostController::class,'filter']);

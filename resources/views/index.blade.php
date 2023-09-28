@@ -9,6 +9,19 @@
 </head>
 <body class="container mx-auto bg-gradient-to-r from-indigo-800 to-purple-900 text-white flex  justify-center">
 
+<form action="/filter" method="post">
+
+    @csrf
+    <select name="select" class="text-amber-950">
+        <option disabled selected>OrderBy</option>
+        <option value="byTitle">ByTitle</option>
+        <option value="byContent">ByContent</option>
+    </select>
+    <button name="submit" type="submit">Submit</button>
+
+
+</form>
+
 <div class="flex flex-col w-1/2 ">
     @foreach($posts as $post )
 
@@ -20,7 +33,8 @@
                 {{$post->content}}
             </p>
             <div class="flex justify-end">
-                <button class="showModal hover:bg-gray-700  bg-indigo-400 text-white p-2.5 rounded-2xl" value="{{$post->id}}"
+                <button class="showModal hover:bg-gray-700  bg-indigo-400 text-white p-2.5 rounded-2xl"
+                        value="{{$post->id}}"
                         name="delete">Delete
                 </button>
             </div>
@@ -76,7 +90,7 @@
     showModals.forEach(show => {
         show.addEventListener('click', function () {
             const id = show.value;
-            const modal = document.querySelector('#popup-modal-'+id);
+            const modal = document.querySelector('#popup-modal-' + id);
             modal.classList.remove('hidden');
         })
     })
@@ -85,7 +99,7 @@
     closers.forEach(closer => {
         closer.addEventListener('click', function () {
             const id = closer.value;
-            const modal = document.querySelector('#popup-modal-'+id);
+            const modal = document.querySelector('#popup-modal-' + id);
             modal.classList.add('hidden');
         })
     })

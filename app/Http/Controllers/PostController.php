@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -52,5 +53,28 @@ class PostController extends Controller
     {
         $post->delete();
         return redirect()->route('posts.index');
+    }
+
+    public function showPostUser(User $user)
+    {
+        return view('user_posts',
+            [
+                'posts' => $user->posts
+            ]);
+    }
+
+    public function filter(Request $request)
+    {
+        $sortBy = $request->get('select');
+        if ($sortBy == 'byTitle'){
+            return view('index',[
+                'posts'=> collect(Post::all()->sortBy('title'))
+            ]);
+        }else{
+            return view('index',[
+                'posts'=> collect(Post::all()->sortByDesc('content'))
+            ]);
+        }
+
     }
 }
