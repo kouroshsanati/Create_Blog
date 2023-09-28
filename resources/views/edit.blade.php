@@ -8,7 +8,7 @@
     <title>blog</title>
 </head>
 <body class="container mx-auto bg-gradient-to-r from-indigo-800 to-purple-900 text-white">
-<form method="post" class="space-y-4" action="/posts/{{$post->id}}">
+<form method="post" class="space-y-4" action="{{route('posts.update',$post)}}">
     @csrf
     @method('PATCH')
     <div>

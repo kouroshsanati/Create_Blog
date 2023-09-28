@@ -45,12 +45,12 @@ class PostController extends Controller
     {
         $validated = $request->validated();
         $post->update($validated);
-        return redirect()->to("/posts/{$post->id}/edit");
+        return redirect()->route('posts.edit');
     }
 
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->to('/posts');
+        return redirect()->route('posts.index');
     }
 }
